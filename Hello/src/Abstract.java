@@ -19,20 +19,28 @@ abstract class Dog {
 	public abstract void poop();
 }
 
-class ChiWaWa extends Dog {
-	public ChiWaWa() {
-		super.breed = "ChiWaWa";
-		System.out.println("A ChiWaWa is born!");
+class Chihuahua extends Dog {
+	private final int maxAge = 12;
+
+	public Chihuahua() {
+		super.breed = "Chihuahua";
+		System.out.println("A Chihuahua is born!");
 	}
 
 	@Override
 	public void poop() {
-		System.out.println("ChiWaWa poop!\n");
+		System.out.println("Chihuahua poop!");
 
+	}
+
+	public void getMaxAge() {
+		System.out.println(maxAge + "\n");
 	}
 }
 
 class Labrador extends Dog {
+	private final int maxAge = 100;
+
 	public Labrador() {
 		breed = "Labrador";
 		System.out.println("A Labrador is born!");
@@ -43,23 +51,29 @@ class Labrador extends Dog {
 		System.out.println("Labrador poop!\n");
 
 	}
+
+	public void getMaxAge() {
+		System.out.println(maxAge + "\n");
+	}
 }
 
-public class AbstractTest {
+public class Abstract {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Dog dogA = new ChiWaWa();
+		Chihuahua dogA = new Chihuahua();
 		dogA.bark();
 		System.out.println(dogA.breed + " is " + dogA.getClass().getSuperclass());
 		Dog.checkBreed(dogA);
 		dogA.poop();
+		dogA.getMaxAge();
 
-		Dog dogB = new Labrador();
+		Labrador dogB = new Labrador();
 		dogB.bark();
 		System.out.println(dogB.breed + " is " + dogB.getClass().getSuperclass());
 		Dog.checkBreed(dogB);
 		dogB.poop();
+		dogB.getMaxAge();
 	}
 
 }
