@@ -1,5 +1,7 @@
 abstract class Dog {
 	String breed;
+	private final static int maxAgeLabrador = 120;
+	private final static int maxAgeChihauhau = 100;
 
 	public void bark() {
 		System.out.println("Bark!");
@@ -10,17 +12,19 @@ abstract class Dog {
 		System.out.println("----------------Check Breed for the dog----------------");
 		if (d.getClass() == Labrador.class) {
 			System.out.println("Yes , it is a Labrador!");
+			System.out.println("Max Age of Breed is " + maxAgeLabrador);
 		} else {
 			System.out.println("No, it's not !");
+			System.out.println("Max Age of Breed is " + maxAgeChihauhau);
 		}
 		System.out.println("------------------End of Check Breed------------------");
+
 	}
 
 	public abstract void poop();
 }
 
 class Chihuahua extends Dog {
-	private final int maxAge = 12;
 
 	public Chihuahua() {
 		super.breed = "Chihuahua";
@@ -29,17 +33,16 @@ class Chihuahua extends Dog {
 
 	@Override
 	public void poop() {
-		System.out.println("Chihuahua poop!");
+		System.out.println("Chihuahua poop!\n");
 
 	}
 
-	public void getMaxAge() {
-		System.out.println(maxAge + "\n");
-	}
+//	public void getMaxAge() {
+//		System.out.println(maxAge + "\n");
+//	}
 }
 
 class Labrador extends Dog {
-	private final int maxAge = 100;
 
 	public Labrador() {
 		breed = "Labrador";
@@ -52,9 +55,9 @@ class Labrador extends Dog {
 
 	}
 
-	public void getMaxAge() {
-		System.out.println(maxAge + "\n");
-	}
+//	public void getMaxAge() {
+//		System.out.println(maxAge + "\n");
+//	}
 }
 
 public class Abstract {
@@ -66,14 +69,14 @@ public class Abstract {
 		System.out.println(dogA.breed + " is " + dogA.getClass().getSuperclass());
 		Dog.checkBreed(dogA);
 		dogA.poop();
-		dogA.getMaxAge();
+		// dogA.getMaxAge();
 
 		Labrador dogB = new Labrador();
 		dogB.bark();
 		System.out.println(dogB.breed + " is " + dogB.getClass().getSuperclass());
 		Dog.checkBreed(dogB);
 		dogB.poop();
-		dogB.getMaxAge();
+		// dogB.getMaxAge();
 	}
 
 }
