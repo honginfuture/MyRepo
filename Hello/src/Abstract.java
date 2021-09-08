@@ -1,7 +1,10 @@
+import java.util.Arrays;
+
 abstract class Dog {
 	String breed;
 	private final static int maxAgeLabrador = 120;
 	private final static int maxAgeChihauhau = 100;
+	public final static String[] ALLBREED = { "Labrador", "ChiHauHau", "GoldenRetriver" };
 
 	public void bark() {
 		System.out.println("Bark!");
@@ -63,7 +66,9 @@ class Labrador extends Dog {
 public class Abstract {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		String s = String.join(" ", Dog.ALLBREED);
+		System.out.println(s);// List all dog breed
+
 		Chihuahua dogA = new Chihuahua();
 		dogA.bark();
 		System.out.println(dogA.breed + " is " + dogA.getClass().getSuperclass());

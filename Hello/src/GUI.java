@@ -56,8 +56,8 @@ public class GUI {
 				}
 				s += "</html>";
 
-				panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 30));
-				panel.setLayout(new GridLayout(0, 1));
+				panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
+				panel.setLayout(new GridLayout(7, 1));
 				panel.add(button1);
 				panel.add(button2);
 				panel.add(button3);
