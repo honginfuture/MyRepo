@@ -1,79 +1,56 @@
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
 //http://www.java2s.com/Code/Java/Swing-JFC/Usingdropdownlists.htm
-public class MyCoffeeGUI {
+public class MyCoffeeGUI extends JPanel implements ActionListener {
+	private String[] description = { "Ethiopia", "Bazil", "Polio", "Brilliant", "Somnescent", "Timorous", "Florid",
+			"Putrescent" };
 
-	private JLabel label1 = new JLabel("Product Information:");
-	// private JLabel[] jLables = new JLabel[6];
-
-	private JLabel label2 = new JLabel();
-	private JLabel label3 = new JLabel();
-	private JLabel label4 = new JLabel();
-	private JLabel label5 = new JLabel();
-	private JLabel label6 = new JLabel();
-	private JLabel label7 = new JLabel();
-	private JFrame frame = new JFrame();
-	JPanel panel = new JPanel();
+	private JLabel label1 = new JLabel("HIHIHIHI");
+	private JComboBox dropList;
 
 	public MyCoffeeGUI() {
+		super(new BorderLayout());
+		this.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 20));
+		dropList = new JComboBox(description);
+		//dropList.setSelectedIndex(2);
+		dropList.addActionListener(this);
 
-		// the clickable button1 to add
-		JButton button1 = new JButton("Roast Me");
+		label1.setHorizontalAlignment(JLabel.CENTER);
 
-		button1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Ethiopia eth = new Ethiopia("Arabica", 1931, 195, "Bench Maji", "Gesha 1931");
-				label2.setText("Flavors: " + eth.roast());
-				label3.setText("Region: " + eth.getType());
-				label4.setText("Varietal: " + eth.getAltitude());
-				label5.setText("Varietal: " + eth.getPrice());
-				label6.setText("Varietal: " + eth.getRegion());
-				label7.setText("Varietal: " + eth.getVarietal());
-			}
-		});
+		add(dropList, BorderLayout.PAGE_START);
+		add(label1);
 
-		// the panel with the button and text
+		setBorder(BorderFactory.createEmptyBorder(0, 30, 20, 20));
 
-		panel.setBorder(BorderFactory.createEmptyBorder(30, 10, 30, 30));
-		panel.setLayout(new GridLayout(0, 3));
+		// dropList.addActionListener(dropList);
+	}
 
-		String comboBoxItems[] = { "Ethiopia", "TEXTPANEL" };
-		JComboBox cb = new JComboBox(comboBoxItems);
-		cb.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				label1.setText((String) ((JComboBox) e.getSource()).getSelectedItem());
-			}
-		});
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+	
+		String coffeeName = (String) cb.getSelectedItem();
+		updateLabel(coffeeName);
 
-		panel.add(cb);
-		panel.add(button1);
-		panel.add(label1);
-		panel.add(label2);
-		panel.add(label3);
-		panel.add(label4);
-		panel.add(label5);
-		panel.add(label6);
-		panel.add(label7);
+	}
 
-		// set up the frame and display it
-		frame.add(panel, BorderLayout.CENTER);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("GUI");
-		frame.pack();
-		frame.setVisible(true);
+	public void itemStateChanged(ItemEvent e) {
+		if (e.getSource() == dropList) {
+			label1.setText((String) dropList.getSelectedItem());
+		}
+	}
+
+	protected void updateLabel(String name) {
+		label1.setText(name);
 	}
 
 }
