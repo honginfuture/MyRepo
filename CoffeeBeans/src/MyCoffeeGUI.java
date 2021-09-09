@@ -21,9 +21,9 @@ public class MyCoffeeGUI extends JPanel implements ActionListener {
 		super(new BorderLayout());
 		this.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 20));
 		dropList = new JComboBox(description);
-		//dropList.setSelectedIndex(2);
-		dropList.addActionListener(this);
+		// dropList.setSelectedIndex(2);
 
+		dropList.addActionListener(this);
 		label1.setHorizontalAlignment(JLabel.CENTER);
 
 		add(dropList, BorderLayout.PAGE_START);
@@ -37,7 +37,7 @@ public class MyCoffeeGUI extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-	
+
 		String coffeeName = (String) cb.getSelectedItem();
 		updateLabel(coffeeName);
 
