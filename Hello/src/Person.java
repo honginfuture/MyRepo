@@ -63,4 +63,10 @@ public class Person implements PersonInterface {
 		return isTired;
 	}
 
+	@Override
+	public void setTiredness() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

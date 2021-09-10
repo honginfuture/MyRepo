@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 abstract class Dog {
 	String breed;
 	private final static int maxAgeLabrador = 120;
@@ -13,13 +11,9 @@ abstract class Dog {
 
 	public static void checkBreed(Dog d) {
 		System.out.println("----------------Check Breed for the dog----------------");
-		if (d.getClass() == Labrador.class) {
-			System.out.println("Yes , it is a Labrador!");
-			System.out.println("Max Age of Breed is " + maxAgeLabrador);
-		} else {
-			System.out.println("No, it's not !");
-			System.out.println("Max Age of Breed is " + maxAgeChihauhau);
-		}
+		System.out.println(
+				d.getClass().equals(Labrador.class) ? "Yes , it is a Labrador!\nMax Age of Breed is " + maxAgeLabrador
+						: "No, it's not!\nMax Age of Breed is " + maxAgeChihauhau);
 		System.out.println("------------------End of Check Breed------------------");
 
 	}
@@ -71,14 +65,16 @@ public class Abstract {
 
 		Chihuahua dogA = new Chihuahua();
 		dogA.bark();
-		System.out.println(dogA.breed + " is " + dogA.getClass().getSuperclass());
+		System.out.println(
+				dogA.breed + " is a " + dogA.getClass().getName() + " : " + dogA.getClass().getSuperclass().getName());
 		Dog.checkBreed(dogA);
 		dogA.poop();
 		// dogA.getMaxAge();
 
 		Labrador dogB = new Labrador();
 		dogB.bark();
-		System.out.println(dogB.breed + " is " + dogB.getClass().getSuperclass());
+		System.out.println(
+				dogB.breed + " is a " + dogB.getClass().getName() + " : " + dogB.getClass().getSuperclass().getName());
 		Dog.checkBreed(dogB);
 		dogB.poop();
 		// dogB.getMaxAge();
