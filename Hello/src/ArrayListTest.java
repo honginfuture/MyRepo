@@ -10,6 +10,7 @@ public class ArrayListTest<T> {
 		arr.add("A");
 		arr.add(null);
 		arr.add("B");
+		arr.add("E");
 
 		System.out.println(arr.size() + " elements: " + arr);
 		arr.set(2, "C");
@@ -28,9 +29,11 @@ public class ArrayListTest<T> {
 
 		System.out.println(arr.contains("C"));
 		for (int i = 0; i < arr.size(); i++) {
-			if (arr.get(i).equals("C")) {
-				System.out.println("Yes contain, breaked");
+			if (arr.get(i).equals("E")) { // arr.get(i) return the obj in index i
+				System.out.println("Yes contain, breaked value at index :" + i);
 				break;
+			} else {
+				System.out.println("searched " + (i + 1) + " Times");
 			}
 		}
 		// String[] toArray = new String[arr.size()]; //Method 1
