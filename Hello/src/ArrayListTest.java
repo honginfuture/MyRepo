@@ -13,13 +13,13 @@ public class ArrayListTest<T> {
 
 		System.out.println(arr.size() + " elements: " + arr);
 		arr.set(2, "C");
-
+//Test set
 		Collections.sort(arr);
 		System.out.println(arr.size() + " elements: " + arr);
 		for (String s : arr) {
 			System.out.println(s);
 		}
-
+//Test remove
 		arr.remove(0);
 		System.out.println(arr.size() + " elements: " + arr);
 		for (String s : arr) {
@@ -27,7 +27,12 @@ public class ArrayListTest<T> {
 		}
 
 		System.out.println(arr.contains("C"));
-
+		for (int i = 0; i < arr.size(); i++) {
+			if (arr.get(i).equals("C")) {
+				System.out.println("Yes contain, breaked");
+				break;
+			}
+		}
 		// String[] toArray = new String[arr.size()]; //Method 1
 		// arr.toArray(toArray);
 		Object[] toArray = arr.toArray(); // Method 2
