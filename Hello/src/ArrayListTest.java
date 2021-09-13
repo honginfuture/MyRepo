@@ -27,5 +27,15 @@ public class ArrayListTest<T> {
 		}
 
 		System.out.println(arr.contains("C"));
+
+		// String[] toArray = new String[arr.size()]; //Method 1
+		// arr.toArray(toArray);
+		Object[] toArray = arr.toArray(); // Method 2
+
+		System.out.println("ToArray size: " + toArray.length);
+		for (int i = 0; i < toArray.length - 1; i++) {
+			System.out.print(toArray[i] + ", ");
+		}
+		System.out.print(toArray[toArray.length - 1]);
 	}
 }
