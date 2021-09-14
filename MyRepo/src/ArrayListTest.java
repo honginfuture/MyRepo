@@ -8,12 +8,15 @@ public class ArrayListTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+
 		Car car1 = new Car("Chan", 1, 0, 0);
 		Car car2 = new Car("Chun", 2, 1, 0);
 		Car car3 = new Car("Hong", 3, 2, 0);
 		Car car4 = new Car("Leung", 4, 3, 0);
 		Car car5 = new Car("Shuk", 5, 4, 0);
 		Car car6 = new Car("Man", 6, 5, 0);
+		Car car7 = new Car("BMW", 7, 6, 0);
+		Car car8 = new Car("Lexus", 8, 7, 0);
 
 		ArrayList<Car> arr = new ArrayList<Car>();
 		arr.add(car1);
@@ -22,6 +25,8 @@ public class ArrayListTest {
 		arr.add(car4);
 		arr.add(car5);
 		arr.add(car6);
+		arr.add(car7);
+		arr.add(car8);
 
 		String[][] grid = new String[arr.size()][arr.size()];
 
@@ -32,6 +37,12 @@ public class ArrayListTest {
 		Draw.setPos(grid, arr);
 		Draw.draw(grid);
 		System.out.println("==========Shuffle==========\n" + arr.size() + " elements: ");
+//		int count = 0;
+//		for (Car car : arr) {
+//			System.out.println(arr.get(count).getCarName()+" "+arr.get(count).getX()+" "+arr.get(count).getY());
+//			count++;
+//		}
+
 		Car.shuffleArray(arr);
 		Draw.setPos(grid, arr);
 		Draw.draw(grid);

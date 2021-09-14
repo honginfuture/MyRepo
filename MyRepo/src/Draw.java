@@ -9,7 +9,6 @@ public class Draw {
 			}
 			System.out.println();
 		}
-
 	}
 
 	public static void setPos(String[][] grid, ArrayList<Car> arr) {
@@ -27,7 +26,7 @@ public class Draw {
 	public static void clearGrid(String[][] grid) {
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid.length; j++) {
-				grid[i][j] = null;
+				grid[i][j] = "-----";
 				// System.out.print(grid[i][j] + "\t");
 			}
 			// System.out.println();
@@ -37,9 +36,9 @@ public class Draw {
 	public static void checkWin(String[][] grid, ArrayList<Car> arr) {
 		for (int i = 0; i < grid.length - 1; i++) {
 			for (int j = grid[i].length - 1; j <= grid[i].length - 1; j++) {
-				if (grid[i][j] != null) {
-					System.out.println("The Winner is: " + arr.get(i).getCarName() + (grid.length - 1) + " "
-							+ (grid[i].length - 1) + "!");break;
+				if (grid[i][j] != "-----") {
+					System.out.println("The Winner is: " + grid[i][j] + " ! at Pos x: " + i + "& y: " + j);
+					continue;
 				}
 			}
 		}
