@@ -37,7 +37,7 @@ public class Draw {
 		for (int i = 0; i < grid.length - 1; i++) {
 			for (int j = grid[i].length - 1; j <= grid[i].length - 1; j++) {
 				if (grid[i][j] != "-----") {
-					System.out.println("The Winner is: " + grid[i][j] + " ! at Pos x: " + i + "& y: " + j);
+					System.out.println("The Winner is: " + grid[i][j] + " ! at Pos x: " + i + " & y: " + j);
 					continue;
 				}
 			}

@@ -58,7 +58,10 @@ public class Car {
 			rndX = rnd.nextInt(arr.size());
 			rndY = rnd.nextInt(arr.size());
 			if (arr.get(i).getX() == arr.get(rndX).getX() && arr.get(i).getY() == arr.get(rndY).getY()) {
-				System.out.println("Crash! x: " + rndX + " y: " + rndY);
+				System.out.println(arr.get(i).getCarName() + " is Crashed and DEAD!! x: " + arr.get(i).getX() + " y: "
+						+ arr.get(i).getY());
+				arr.get(i).setCarName("DEAD");
+
 				continue;
 			} else {
 				System.out.println("OK!");
