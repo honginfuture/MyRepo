@@ -16,7 +16,8 @@ public class ArrayListTest {
 		Car car5 = new Car("Shuk", 5, 4, 0);
 		Car car6 = new Car("Man", 6, 5, 0);
 		Car car7 = new Car("BMW", 7, 6, 0);
-		Car car8 = new Car("Lexus", 8, 7, 0);
+		// Car car8 = new Car("Lexus", 8, 7, 0);
+		Car car8 = Car.makeCar("Lexus", 7, 0);
 
 		ArrayList<Car> arr = new ArrayList<Car>();
 		arr.add(car1);
@@ -27,8 +28,13 @@ public class ArrayListTest {
 		arr.add(car6);
 		arr.add(car7);
 		arr.add(car8);
+		System.out.println(car8.toString());
+		System.out.println(arr.toString());
 
-		String[][] grid = new String[arr.size()][arr.size()];
+		// Declaration VS initialization
+		String[][] grid;
+		// VS initialization
+		grid = new String[arr.size()][arr.size()];
 
 		System.out.println("==========Start==========\n" + arr.size() + " elements: ");
 //		for (int i = 0; i < arr.size(); i++) {

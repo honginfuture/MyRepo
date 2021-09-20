@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Draw {
+public abstract class Draw {
 	public static void draw(String[][] grid) {
 
 		for (int i = 0; i < grid.length; i++) {

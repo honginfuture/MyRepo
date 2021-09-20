@@ -6,16 +6,25 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Car {
 
-	private int carID;
+	private int carID = 1;
 	private String carName = "";
 	private int x;
 	private int y;
+	private double speed;
+	private String model;
+	
 
 	public Car(String name, int carID, int x, int y) {
 		this.carName = name;
 		this.carID = carID;
 		this.x = x;
 		this.y = y;
+		this.speed = Math.random() * 100;
+	}
+
+	public static Car makeCar(String carName, int x, int y) {
+		Car carObj = new Car(carName, 1, 7, 0);
+		return carObj;
 	}
 
 	public void setCarName(String name) {
@@ -26,9 +35,10 @@ public class Car {
 		return carName;
 	}
 
-	public void setCarID(int carID) {
-		this.carID = carID;
-	}
+// To prohibit Car ID change
+//	public void setCarID(int carID) {
+//		this.carID = carID;
+//	}
 
 	public int getCarID() {
 		return this.carID;
@@ -48,6 +58,14 @@ public class Car {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+
+	public void increaseSpeed() {
+		this.speed++;
+	}
+
+	public String toString() {
+		return String.format("%d-%s-%.2f", this.carID, this.carName.toString(), this.speed);
 	}
 
 	static void shuffleArray(ArrayList<Car> arr) {
@@ -70,7 +88,7 @@ public class Car {
 			}
 		}
 
-//		for (int i = 0; i < arr.size() - 1; i++) {
+		// for (int i = 0; i < arr.size() - 1; i++) {
 //			for(int j=0;j<arr.size()-1;j++) {		
 //				if(arr.get(i).getCarID() != arr.get())
 //						{;
