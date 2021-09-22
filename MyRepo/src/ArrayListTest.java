@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class ArrayListTest {
 
