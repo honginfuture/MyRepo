@@ -34,6 +34,7 @@ public class PandaCrwal {
 		int promoCount = 0;
 		int dryCount = 0;
 
+		ArrayList<Element> nameElementsArr = new ArrayList<Element>();
 		ArrayList<Element> divElementsArr = new ArrayList<Element>();
 		int i = 0;
 		while (iterator.hasNext()) {
@@ -42,22 +43,30 @@ public class PandaCrwal {
 			i++;
 		}
 
+		int j = 0;
+		while (nameIterator.hasNext()) {
+			nameElementsArr.add(nameIterator.next());
+			// System.out.println(divElementsArr.get(i).text());
+			j++;
+		}
+
 		for (int t = 0; t < divElementsArr.size() - 1; t++) {
 			if (divElementsArr.get(t).attr("class").equals("box-flex fd-row ai-center")
 					&& divElementsArr.get(t + 1).attr("class").equals("badge-info")) {
 				promoCount++;
-				System.out.print(divElementsArr.get(t).attr("class").toString() + "\t");
-				System.out.println(promoCount + ":\t\tPromotion");
-			} else if 
-					(
+				 System.out.print(nameElementsArr.get(t).text());
+				System.out.print(divElementsArr.get(t).text() + "\t");
+				System.out.println("Promotion:\t\t\t\t" + promoCount);
+			} else if (
 //							(divElementsArr.get(t).attr("class").equals("badge-info")
 //					&& divElementsArr.get(t + 1).attr("class").equals("box-flex fd-row ai-center")) 
 //					|| 
-					(divElementsArr.get(t).attr("class").equals("badge-info")
+			(divElementsArr.get(t).attr("class").equals("badge-info")
 					&& divElementsArr.get(t + 1).attr("class").equals("badge-info"))) {
 				dryCount++;
-				System.out.print(divElementsArr.get(t).attr("class").toString() + "\t");
-				System.out.println(dryCount + ":\t\t\t\tNo Promotion");
+				 System.out.print(nameElementsArr.get(t).text());
+				System.out.print(divElementsArr.get(t).text() + "\t");
+				System.out.println("No Promotion\t\t" + dryCount);
 			}
 		}
 
