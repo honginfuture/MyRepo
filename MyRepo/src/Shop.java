@@ -26,13 +26,14 @@ public class Shop {
 
 	public static void crawlShop(String url) throws IOException, InterruptedException {
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\RCHCHAN\\eclipse\\chromedriver.exe");// Windows
-		// System.setProperty("webdriver.chrome.driver", "/Users/Hong/eclipse/chromedriver");//MacOS
+		// System.setProperty("webdriver.chrome.driver",
+		// "/Users/Hong/eclipse/chromedriver");//MacOS
 		WebDriver driver = new ChromeDriver();
 
 		// ---------------------------------------START of Wan Chai
 		// Crawl Dairy Product
 		driver.navigate().to(url
-			//	"https://www.foodpanda.hk/restaurants/new?lat=22.27987718737818&lng=114.18376973387&vertical=restaurants&expedition=pickup"
+		// "https://www.foodpanda.hk/restaurants/new?lat=22.27987718737818&lng=114.18376973387&vertical=restaurants&expedition=pickup"
 		// "https://www.foodpanda.hk/restaurants/new?lat=22.2742239&lng=114.1728051&vertical=shop&expedition=delivery/"
 		);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -67,7 +68,7 @@ public class Shop {
 			Element divEle = iterator.next();
 			arr.add(divEle);
 		}
-		System.out.println(arr.toString());
+		// System.out.println(arr.toString());
 
 		for (int i = 0; i < arr.size() - 1; i++) {
 			if (arr.get(i).attr("class").equals("name fn")
