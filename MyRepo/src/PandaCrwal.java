@@ -23,52 +23,92 @@ public class PandaCrwal {
 		driver.navigate().to("\n"
 				+ "		https://www.foodpanda.hk/restaurants/new?lat=22.2742239&lng=114.1728051&vertical=shop&expedition=delivery/");
 		Document doc = Jsoup.parse(driver.getPageSource());
-		Elements divElements = doc.select("span[class=\"box-flex fd-row ai-center\"],span[class=\"badge-info\"]");
-		Elements nameElements = doc.select("span[class=\"name fn\"]");
+		Elements divElements = doc
+				.select("span[class=\"name fn\"],span[class=\"box-flex fd-row ai-center\"],span[class=\"badge-info\"]");
+
+		int nameCount = 0;
+		int promoCount = 0;
+		int badgeCount = 0;
+
 		StringBuilder builder = new StringBuilder();
 		Iterator<Element> iterator = divElements.iterator();
-		Iterator<Element> nameIterator = nameElements.iterator();
-		System.out.println("number of Shop: " + nameElements.size());
-		System.out.println("number of RawPromotion: " + divElements.size());
-		int totalCount = 0;
-		int promoCount = 0;
-		int dryCount = 0;
+		ArrayList<Element> arr = new ArrayList<Element>();
+		ArrayList<Shop> shops = new ArrayList<Shop>();
+		System.out.println("Total Element: " + divElements.size());
 
-		ArrayList<Element> nameElementsArr = new ArrayList<Element>();
-		ArrayList<Element> divElementsArr = new ArrayList<Element>();
-		int i = 0;
 		while (iterator.hasNext()) {
-			divElementsArr.add(iterator.next());
-			// System.out.println(divElementsArr.get(i).text());
-			i++;
+			Element divEle = iterator.next();
+			arr.add(divEle);
 		}
+		System.out.println(arr.toString());
 
-		int j = 0;
-		while (nameIterator.hasNext()) {
-			nameElementsArr.add(nameIterator.next());
-			// System.out.println(divElementsArr.get(i).text());
-			j++;
-		}
-
-		for (int t = 0; t < divElementsArr.size() - 1; t++) {
-			if (divElementsArr.get(t).attr("class").equals("box-flex fd-row ai-center")
-					&& divElementsArr.get(t + 1).attr("class").equals("badge-info")) {
+		for (int i = 0; i < arr.size() - 1; i++) {
+			if (arr.get(i).attr("class").equals("name fn")
+					&& arr.get(i + 1).attr("class").equals("box-flex fd-row ai-center")) {
+				nameCount++;
 				promoCount++;
-				 System.out.print(nameElementsArr.get(t).text());
-				System.out.print(divElementsArr.get(t).text() + "\t");
-				System.out.println("Promotion:\t\t\t\t" + promoCount);
-			} else if (
-//							(divElementsArr.get(t).attr("class").equals("badge-info")
-//					&& divElementsArr.get(t + 1).attr("class").equals("box-flex fd-row ai-center")) 
-//					|| 
-			(divElementsArr.get(t).attr("class").equals("badge-info")
-					&& divElementsArr.get(t + 1).attr("class").equals("badge-info"))) {
-				dryCount++;
-				 System.out.print(nameElementsArr.get(t).text());
-				System.out.print(divElementsArr.get(t).text() + "\t");
-				System.out.println("No Promotion\t\t" + dryCount);
+				builder.append(nameCount + "\t" + arr.get(i).text() + "\r\n");
+				shops.add(new Shop(arr.get(i).text(), arr.get(i + 1).text(), arr.get(i + 2).text()));
+			} else if (arr.get(i).attr("class").equals("name fn")
+					&& arr.get(i + 1).attr("class").equals("badge-info")) {
+				badgeCount++;
 			}
 		}
+		System.out.print("Total namefn: " + nameCount + "\r\n" + "Total box-flex fd-row ai-center: " + promoCount
+				+ "\r\n" + "Total badge-info: " + badgeCount + "\r\n");
+
+		for (int i = 0; i < shops.size(); i++) {
+			System.out.print("Shop name: " + shops.get(i).sName + "\t\t\t\tShop Promo: " + shops.get(i).promo
+					+ "\t\tShop Badge: " + shops.get(i).badge + "\r\n");
+		}
+	}
+}
+//		ArrayList<Element> nameElementsArr = new ArrayList<Element>();
+//		ArrayList<Element> divElementsArr = new ArrayList<Element>();
+//		int i = 0;
+//		while (iterator.hasNext()) {
+//			divElementsArr.add(iterator.next());
+//			// System.out.println(divElementsArr.get(i).text());
+//			i++;
+//		}
+
+//		int j = 0;
+//		while (nameIterator.hasNext()) {
+//			nameElementsArr.add(nameIterator.next());
+//			// System.out.println(divElementsArr.get(i).text());
+//			j++;
+//		}
+//
+//		for (int t = 0; t < divElements.size()-nameElements.size(); t++) {
+//			if (
+//
+//			(divElementsArr.get(t).attr("class").equals("box-flex fd-row ai-center")
+//					&& divElementsArr.get(t + 1).attr("class").equals("badge-info")) ||
+//
+//					(divElementsArr.get(t).attr("class").equals("box-flex fd-row ai-center")
+//							&& divElementsArr.get(t + 1).attr("class").equals("box-flex fd-row ai-center"))
+//
+//			) {
+//				promoCount++;
+//				System.out.print(promoCount + " Promotion:\t\t");
+//				System.out.print(divElementsArr.get(t).text() + "\t");
+//				System.out.print(nameElementsArr.get(t).text());
+//				System.out.println();
+//
+//			} else if (
+//					
+//					(divElementsArr.get(t).attr("class").equals("badge-info")
+//					&& divElementsArr.get(t + 1).attr("class").equals("box-flex fd-row ai-center"))  	|| 
+//					(divElementsArr.get(t).attr("class").equals("badge-info")
+//							&& divElementsArr.get(t + 1).attr("class").equals("badge-info"))
+//					) {
+//				dryCount++;
+//				System.out.print(dryCount + " No Promotion\t\t");
+//				System.out.print(divElementsArr.get(t).text() + "\t\t");
+//				System.out.print(nameElementsArr.get(t).text());
+//				System.out.println();
+//			}
+//		}
 
 //		while (iterator.hasNext()) {
 //			Element divElement = divElements.get(totalCount);
@@ -98,9 +138,6 @@ public class PandaCrwal {
 //		}
 //		System.out.print(promoCount + " promotion!");
 //		System.out.print(dryCount + "NO PROMOTION");
-
-	}
-}
 
 // System.out.println(count + builder.toString());
 
