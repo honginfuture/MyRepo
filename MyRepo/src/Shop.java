@@ -36,7 +36,7 @@ public class Shop {
 		// "https://www.foodpanda.hk/restaurants/new?lat=22.27987718737818&lng=114.18376973387&vertical=restaurants&expedition=pickup"
 		// "https://www.foodpanda.hk/restaurants/new?lat=22.2742239&lng=114.1728051&vertical=shop&expedition=delivery/"
 		);
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+
 		driver.manage().window().maximize();
 		// This will scroll the web page till end.
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");

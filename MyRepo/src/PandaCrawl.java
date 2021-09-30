@@ -1,11 +1,34 @@
 import java.io.IOException;
 
-public class PandaCrwal {
+public class PandaCrawl {
 	public static void main(String[] args) throws IOException, InterruptedException {
 
-//		Shop.crawlShop("https://www.foodpanda.hk/restaurants/new?lat=22.27987718737818&lng=114.18376973387&vertical=shop&expedition=delivery");
-		Restaurant.crawlRest(
-				"https://www.foodpanda.hk/restaurants/new?lat=22.27987718737818&lng=114.18376973387&vertical=restaurants&expedition=pickup");
+		// Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai");
+		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai");
+//		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai#category/1d9b2558-4e8d-44d1-b511-e9196a27e4a7");
+//		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai#category/02721ad0-a9d9-479c-9c6c-c901930a7cc4");
+//		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai#category/1e483064-af24-4d59-af5b-bba147ed83f7");
+//		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai#category/994e57f5-bfcc-46bd-b387-c1f606337f61");
+//		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai#category/617964aa-afda-4558-b00e-4107c4a913a3");
+//		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai#category/21286eb3-b114-4024-9a86-a9bcffc35a2c");
+//		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai#category/ca59ccd4-fc42-475e-bf89-e01db04f4e54");
+//		
+//		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai#category/709f7f7a-c26f-49a2-8b5b-83be5bbdc113");
+//		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai#category/9163e783-96a0-4342-9c09-73b8756a99af");
+//		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai#category/9a4b82ee-d19d-4cdb-a7e0-47f3dfc46df2");
+//		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai#category/b1212777-de70-45ab-8217-9be671b86576");
+//		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai#category/7a17be3d-48b2-495a-9339-16f01df6f689");
+//		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai#category/ccde6c48-6090-43fb-8ba8-782bd7efb72c");
+//		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai#category/711fd8c9-9964-46ed-b24d-3c07b1e56e28");
+//		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai#category/7c3b0ee3-53f3-4856-a733-1510e93f92c4");
+//		
+//		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai#category/4abec6af-b1af-4fab-8f2f-5c1b58bacb1d");
+//		Product.crawlProd("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai#category/76ecd3b4-e3f1-481a-ace7-4b77344943d7");
+		
+		// Shop.crawlShop("https://www.foodpanda.hk/restaurants/new?lat=22.2742239&lng=114.1728051&vertical=shop&expedition=delivery");
+		// Restaurant.crawlRest(
+		// "https://www.foodpanda.hk/restaurants/new?lat=22.27987718737818&lng=114.18376973387&vertical=restaurants&expedition=pickup");
+
 	}
 //		System.setProperty("webdriver.chrome.driver", "C:\\Users\\RCHCHAN\\eclipse\\chromedriver.exe");// Windows
 //		// System.setProperty("webdriver.chrome.driver", "/Users/Hong/eclipse/chromedriver");//MacOS

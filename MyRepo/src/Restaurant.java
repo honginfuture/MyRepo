@@ -52,40 +52,19 @@ public class Restaurant {
 		js.executeScript("window.scrollBy(0, 50000)");
 		js.executeScript("window.scrollBy(0, -1000)");
 		Thread.sleep(2000);
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		js.executeScript("window.scrollBy(0, 50000)");
 		js.executeScript("window.scrollBy(0, -1000)");
 		Thread.sleep(2000);
 		js.executeScript("window.scrollBy(0, 50000)");
 		js.executeScript("window.scrollBy(0, -1000)");
-		Thread.sleep(2000);
-		js.executeScript("window.scrollBy(0, 50000)");
-		js.executeScript("window.scrollBy(0, -1000)");
-		Thread.sleep(2000);
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		js.executeScript("window.scrollBy(0, 50000)");
-		js.executeScript("window.scrollBy(0, -1000)");
-		Thread.sleep(2000);
-		js.executeScript("window.scrollBy(0, 50000)");
-		js.executeScript("window.scrollBy(0, -1000)");
-		Thread.sleep(2000);
-		js.executeScript("window.scrollBy(0, 50000)");
-		js.executeScript("window.scrollBy(0, -1000)");
-		Thread.sleep(2000);
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		js.executeScript("window.scrollBy(0, 50000)");
-		js.executeScript("window.scrollBy(0, -1000)");
-		Thread.sleep(2000);
-		js.executeScript("window.scrollBy(0, 50000)");
-		js.executeScript("window.scrollBy(0, -1000)");
-		Thread.sleep(2000);
-		js.executeScript("window.scrollBy(0, 50000)");
-		js.executeScript("window.scrollBy(0, -1000)");
-		Thread.sleep(2000);
+
 		Document doc = Jsoup.parse(driver.getPageSource());
 		Element deliverTo = doc.selectFirst("span[class\"header-order-button-content\"]");
 		Elements divElements = doc.select(
-				"span[class=\"name fn\"],ul[class=\"extra-info mov-df-extra-info\"],span[class=\"box-flex fd-row ai-center\"],span[class=\"badge-info pickup-info\"]");
+				"span[class=\"name fn\"]"
+				+ ",ul[class=\"extra-info mov-df-extra-info\"]"
+				+ ",span[class=\"box-flex fd-row ai-center\"]"
+				+ ",span[data-testid\"vendor-distance\"]");
 
 		int nameCount = 0;
 		int promoCount = 0;
@@ -114,6 +93,8 @@ public class Restaurant {
 			} else if (arr.get(i).attr("class").equals("name fn")
 					&& arr.get(i + 1).attr("class").equals("badge-info pickup-info")) {
 				badgeCount++;
+				// rests.add(new Restaurant(arr.get(i).text(), arr.get(i + 1).text(), arr.get(i
+				// + 2).text(), "No Promotion"));
 			}
 		}
 		System.out.print("Total namefn: " + nameCount + "\r\n" + "Total box-flex fd-row ai-center: " + promoCount
@@ -121,10 +102,10 @@ public class Restaurant {
 		StringBuilder builder1 = new StringBuilder();
 		for (int i = 0; i < rests.size(); i++) {
 
-			builder1.append("Restarant name: " + rests.get(i).distance + rests.get(i).rName + "\tRestarant Promo: \t"
-					+ rests.get(i).promo + "\tRestarant Badge: \t" + rests.get(i).badge + "\t\r\n");
-			System.out.print("Restarant name: \t" + rests.get(i).distance + rests.get(i).rName + "\tRestarant Promo: \t"
-					+ rests.get(i).promo + "\tRestarant Badge: \t" + rests.get(i).badge + "\t\r\n");
+			builder1.append("Restarant name: \t" + rests.get(i).rName + "\tRestarant Promo: \t" + rests.get(i).promo
+					+ "\tRestarant Badge: \t" + rests.get(i).badge + "\tDistance: " + rests.get(i).distance + "\t\r\n");
+			System.out.print("Restarant name: \t" + rests.get(i).rName + "\tRestarant Promo: \t" + rests.get(i).promo
+					+ "\tRestarant Badge: \t" + rests.get(i).badge + "\tDistance: " + rests.get(i).distance + "\t\r\n");
 		}
 		FileWriter test = new FileWriter("C:\\Users\\RCHCHAN\\2.txt");
 		test.write(builder1.toString());
