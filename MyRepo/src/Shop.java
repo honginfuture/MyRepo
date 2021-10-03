@@ -25,30 +25,17 @@ public class Shop {
 	}
 
 	public static void crawlShop(String url) throws IOException, InterruptedException {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\RCHCHAN\\eclipse\\chromedriver.exe");// Windows
 		// System.setProperty("webdriver.chrome.driver",
-		// "/Users/Hong/eclipse/chromedriver");//MacOS
+		// "C:\\Users\\RCHCHAN\\eclipse\\chromedriver.exe");// Windows
+		System.setProperty("webdriver.chrome.driver", "/Users/Hong/eclipse/chromedriver");// MacOS
 		WebDriver driver = new ChromeDriver();
 
 		// ---------------------------------------START of Wan Chai
 		// Crawl Dairy Product
-		driver.navigate().to(url
-		// "https://www.foodpanda.hk/restaurants/new?lat=22.27987718737818&lng=114.18376973387&vertical=restaurants&expedition=pickup"
-		// "https://www.foodpanda.hk/restaurants/new?lat=22.2742239&lng=114.1728051&vertical=shop&expedition=delivery/"
-		);
+		driver.navigate().to(url);
 
-		driver.manage().window().maximize();
 		// This will scroll the web page till end.
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		js.executeScript("window.scrollBy(0, 50000)");
-		js.executeScript("window.scrollBy(0, -1000)");
-		Thread.sleep(2000);
-		js.executeScript("window.scrollBy(0, 50000)");
-		js.executeScript("window.scrollBy(0, -1000)");
-		Thread.sleep(2000);
-		js.executeScript("window.scrollBy(0, 50000)");
-		js.executeScript("window.scrollBy(0, -1000)");
-		Thread.sleep(2000);
+		javaScript.jScript(driver);
 		Document doc = Jsoup.parse(driver.getPageSource());
 		Element deliverTo = doc.selectFirst("span[class\"header-order-button-content\"]");
 		Elements divElements = doc
@@ -95,6 +82,8 @@ public class Shop {
 		FileWriter test = new FileWriter("C:\\Users\\RCHCHAN\\1.txt");
 		test.write(builder1.toString());
 		test.close();
+		driver.close();
+		driver.quit();
 	}
 
 }
