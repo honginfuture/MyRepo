@@ -37,9 +37,8 @@ public class Shop {
 		// This will scroll the web page till end.
 		javaScript.jScript(driver);
 		Document doc = Jsoup.parse(driver.getPageSource());
-		Element deliverTo = doc.selectFirst("span[class\"header-order-button-content\"]");
-		Elements divElements = doc
-				.select("span[class=\"name fn\"],span[class=\"box-flex fd-row ai-center\"],span[class=\"badge-info\"]");
+		//Element deliverTo = doc.selectFirst("span[class\"header-order-button-content\"]");
+		Elements divElements = doc.select("span[class=\"name fn\"],span[class=\"box-flex fd-row ai-center\"],span[class=\"badge-info\"]");
 
 		int nameCount = 0;
 		int promoCount = 0;
@@ -49,7 +48,7 @@ public class Shop {
 		Iterator<Element> iterator = divElements.iterator();
 		ArrayList<Element> arr = new ArrayList<Element>();
 		ArrayList<Shop> shops = new ArrayList<Shop>();
-		System.out.println("Deliver To: " + deliverTo + "Total Element: " + divElements.size());
+		System.out.println("Total Element: " + divElements.size());
 
 		while (iterator.hasNext()) {
 			Element divEle = iterator.next();
