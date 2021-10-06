@@ -11,31 +11,31 @@ public class javaScript {
 		// This will scroll the web page till end.
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		//Actions action = new Actions(driver);
-		Thread.sleep(1500);
+		Thread.sleep(10000);
 		//action.moveByOffset(0, 0).perform();
 //action.click();
-		Thread.sleep(500);
+		Thread.sleep(10000);
 		js.executeScript("window.scrollBy(0, 50000)");
-		js.executeScript("window.scrollBy(0, -1000)");
+		js.executeScript("window.scrollBy(0, -2000)");
 
 
-		Thread.sleep(500);
+		Thread.sleep(10000);
 		js.executeScript("window.scrollBy(0, 50000)");
-		js.executeScript("window.scrollBy(0, -1000)");
+		js.executeScript("window.scrollBy(0, -2000)");
 
-		Thread.sleep(500);
+		Thread.sleep(10000);
 		js.executeScript("window.scrollBy(0, 50000)");
-		js.executeScript("window.scrollBy(0, -1000)");
+		js.executeScript("window.scrollBy(0, -2000)");
 		//action.moveByOffset(0, 0).perform();
 		//action.click();
-		Thread.sleep(500);
+		Thread.sleep(10000);
 		js.executeScript("window.scrollBy(0, 50000)");
-		js.executeScript("window.scrollBy(0, -1000)");
+		js.executeScript("window.scrollBy(0, -2000)");
 
 		js.executeScript("window.scrollBy(0, 50000)");
-		js.executeScript("window.scrollBy(0, -1000)");
+		js.executeScript("window.scrollBy(0, -2000)");
 		//action.moveByOffset(0, 0).perform();
 		//action.click();
-		Thread.sleep(500);
+		Thread.sleep(10000);
 	}
 }
