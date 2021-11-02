@@ -14,10 +14,129 @@ import org.openqa.selenium.devtools.idealized.Network.UserAgent;
 
 public class PandaCrawl {
 	public static void main(String[] args) throws IOException, InterruptedException {
+		crawlLinks("https://www.foodpanda.hk/restaurants/new?lat=22.274237&lng=114.1726391&vertical=restaurants&expedition=pickup");
+		// crawlProducts("https://www.foodpanda.hk/shop/y8ww/ming-kee-vegetables");
+		// //Ming Kee
+//crawlProducts("https://www.foodpanda.hk/shop/d5bw/mr-fresh-fruits-and-veggies-wan-chai"); //Mr-Fruit
+		// crawlProducts("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai");
+		//crawlRestaurants("https://www.foodpanda.hk/zh/restaurant/lhf4/fairwood-wu-chung-house?opening_type=pickup");
+//		crawlRestaurants(				"https://www.foodpanda.hk/zh/restaurant/o0rr/gyuugoku-stone-grill-steak-wan-chai?opening_type=pickup");
+//		crawlRestaurants("https://www.foodpanda.hk/zh/restaurant/v4vf/quan-viet?opening_type=pickup");
+//		crawlRestaurants("https://www.foodpanda.hk/zh/restaurant/w0ha/beijing-home-wan-chai-?opening_type=pickup");
+//		crawlRestaurants(				"https://www.foodpanda.hk/zh/restaurant/fuxe/burgerism-by-fabrik-wan-chai?opening_type=pickup");
 
-		 crawlProducts("https://www.foodpanda.hk/darkstore/x5xv/pandamart-wan-chai");
-		// crawlShop("https://www.foodpanda.hk/restaurants/new?lat=22.274237&lng=114.1726391&vertical=shop&expedition=delivery");
-		//crawlShops("https://www.foodpanda.hk/restaurants/new?lat=22.274237&lng=114.1726391&expedition=pickup&vertical=restaurants");
+		//crawlLinks("https://www.foodpanda.hk/restaurants/new?lat=22.29959649191365&lng=114.17307582222898&vertical=restaurants&expedition=pickup");
+	}
+
+	public static void crawlLinks(String url) throws IOException, InterruptedException {
+		System.setProperty("webdriver.chrome.driver", // "/Users/Hong/eclipse/chromedriver");// MacOS
+				"C:\\Users\\RCHCHAN\\eclipse\\chromedriver.exe");// Windows
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().minimize();
+		driver.get(url);
+		javaScript.jScript(driver);
+		Document doc = Jsoup.parse(driver.getPageSource()); // �j�U
+		Elements departments = doc.select("a[href^=/restaurant/]"); // Select �U Department Link
+		HashSet<String> departSet = new HashSet<String>(); // new HashSet for unique Department Link eg: �s�A���~
+		StringBuilder builder = new StringBuilder();
+		for (Element ele : departments) {
+			departSet.add(ele.attr("href"));
+			builder.append("https://www.foodpanda.hk"+ele.attr("href") + "\r\n");
+		}
+		departSet.forEach(System.out::println);
+
+		String fileDate = java.time.LocalDate.now().toString();
+		FileWriter file = new FileWriter("C:\\Users\\RCHCHAN\\Desktop\\Test\\" + fileDate + "-PickupLinks.txt", // Windows
+				// "/Users/Hong/Desktop/" + java.time.LocalDate.now().toString() + ".txt",
+				true);
+
+		file.append(builder.toString());
+		file.close();
+		driver.close();
+		driver.quit();
+	}
+
+	public static void crawlRestaurants(String url) throws IOException, InterruptedException {
+		System.setProperty("webdriver.chrome.driver", // "/Users/Hong/eclipse/chromedriver");// MacOS
+				"C:\\Users\\RCHCHAN\\eclipse\\chromedriver.exe");// Windows
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().minimize();
+		driver.get(url);
+//		javaScript.jScript(driver);
+		Document doc = Jsoup.parse(driver.getPageSource()); // �j�U
+
+		// write to txt
+		String fileDate = java.time.LocalDate.now().toString();
+		FileWriter file = new FileWriter("C:\\Users\\RCHCHAN\\Desktop\\Test\\" + fileDate + "-Pickup.txt", // Windows
+				// "/Users/Hong/Desktop/" + java.time.LocalDate.now().toString() + ".txt",
+				true);
+		// file.write("Product Category\tProduct name\tProduct Price\tNormal
+		// Price\tDeal\r\n");
+
+		Elements divElements = doc
+				.select("h1[class=\"sm:f-18 md:f-18 lg:f-18 f-24 sm:fw-bold md:fw-bold lg:fw-bold fw-bold\"]"
+						+ ",span[class=\"tag-label f-12 fw-bold\"]" + ",h2[class=\"dish-category-title\"]"
+						+ ",h3[class=\"dish-name\"]" + ",span.price p-price" + ",span[class=\"price-discount\"]"
+				// + ",div[class=\"product-deal-tag\"]"
+				);
+
+		divElements.forEach(System.out::println);
+		int nameCount = 0;
+		int promoCount = 0;
+		int dealTag = 0;
+		int discountTag = 0;
+
+		StringBuilder builder = new StringBuilder();
+		ArrayList<Element> arr = new ArrayList<Element>();
+		ArrayList<Meal> meals = new ArrayList<Meal>();
+		System.out.println("Total Element: " + divElements.size());
+
+		for (Element divEle : divElements) {
+			arr.add(divEle);
+			// System.out.println(divEle.text());
+		}
+		// System.out.println(arr.size());
+		String categoryName = "";
+		String promotion = "";
+		String restName = arr.get(0).text();
+		if (arr.get(1).attr("class").equals("tag-label f-12 fw-bold")) {
+			promotion = arr.get(1).text();
+		}
+
+		for (int i = 1; i < arr.size() - 3; i++) {
+			if (arr.get(i).tagName().equals("h2")) {
+				categoryName = arr.get(i).text();
+				System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXxCateName: " + categoryName);
+			} else if (arr.get(i).attr("class").equals("dish-name")
+					&& arr.get(i + 1).attr("class").equals("price p-price")
+					&& arr.get(i + 2).attr("class").equals("price-discount")) {
+				nameCount++;
+				dealTag++;
+				meals.add(new Meal(restName, categoryName, arr.get(i).text(),
+						arr.get(i + 1).select(
+								"//*[@id=\"menu__category-id-772164\"]/ul/li[1]/div/section/div[1]/div/span/text()")
+								.text(),
+						arr.get(i + 2).text(), promotion));
+			} else if (arr.get(i).attr("class").equals("dish-name")
+					&& arr.get(i + 1).attr("class").equals("price p-price")) {
+				nameCount++;
+				dealTag++;
+				meals.add(new Meal(restName, categoryName, arr.get(i).text(), arr.get(i + 1).text(), "", promotion));
+			}
+		}
+
+		for (int i = 0; i < meals.size(); i++) {
+			builder.append(meals.get(i).restName + "\t" + meals.get(i).mType + "\t" + meals.get(i).mName + "\t"
+					+ meals.get(i).disPrice + "\t" + meals.get(i).deal + "\r\n");
+			System.out.print(meals.get(i).restName + "\t" + meals.get(i).mType + "\t" + meals.get(i).mName + "\t"
+					+ meals.get(i).disPrice + "\t" + meals.get(i).deal + "\r\n");
+		}
+		file.append(builder.toString());
+
+		file.close();
+		driver.close();
+		driver.quit();
+
 	}
 
 	public static void crawlProducts(String url) throws IOException, InterruptedException {

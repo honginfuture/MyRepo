@@ -6,7 +6,6 @@ public class javaScript {
 
 	public static void jScript(WebDriver driver) throws InterruptedException {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-
 		// driver.manage().window().maximize();
 		// This will scroll the web page till end.
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
